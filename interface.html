@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Automation Tool</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Web Automation Tool</h2>
+    <p>Follow these steps to automate your web interactions:</p>
+    <ol>
+        <li>Type the keyword and also enter the targeted web page URL to check if it contains a sponsored ad.</li>
+        <li>Click 'Check Ad' to verify. If an ad is detected, you will be prompted to enter the number of clicks.</li>
+        <li>Enter the number of times you want to auto-click the ad and click 'Run Auto-click'.</li>
+    </ol>
+    <form id="automationForm">
+        <label for="keyword_search">Search Keyword:</label>
+        <input type="text" id="keyword_search" placeholder="Type the keyword" required>
+        <label for="web_link">Targeted Web Page:</label>
+        <input type="text" id="web_link" placeholder="Enter the URL" required>
+        <button type="button" onclick="checkAd()">Check Ad</button>
+        <label for="number_of_clicks">Number of Clicks:</label>
+        <input type="number" id="number_of_clicks" placeholder="Enter the number of clicks" min="1" style="display:none;" required>
+        <button type="button" onclick="runAutoclick()" style="display:none;">Run Auto-click</button>
+    </form>
+    <div id="message"></div>
+    
+    <script>
+        function checkAd() {
+            $('#message').text('Checking for ads, please wait...'); // Show a loading message
+            $.ajax({
+                type: "POST",
+                url: "/check_ad",
+                contentType: "application/json",
+                data: JSON.stringify({web_link: $('#web_link').val()}),
+                success: function(response) {
+                    if(response.ad_found) {
+                        $('#message').text('Ad detected. Please enter the number of clicks.');
+                        $('#number_of_clicks').show();
+                        $('button[onclick="runAutoclick()"]').show();
+                    } else {
+                        $('#message').text('No ad detected.');
+                    }
+                },
+                error: function() {
+                    $('#message').text('Failed to check the ad. Please try again.');
+                }
+            });
+        }
+
+        function runAutoclick() {
+            $('#message').text('Starting auto-click, please wait...'); // Show a loading message while running autoclick
+            $.ajax({
+                type: "POST",
+                url: "/run_autoclick",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    web_link: $('#web_link').val(),
+                    number_of_clicks: $('#number_of_clicks').val()
+                }),
+                success: function(response) {
+                    $('#message').text(response.message);
+                },
+                error: function() {
+                    $('#message').text('Failed to start auto-clicking. Please try again.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
