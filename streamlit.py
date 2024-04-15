@@ -1,17 +1,32 @@
 import streamlit as st
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import WebDriverException
 from urllib.parse import urlparse, parse_qs
 from threading import Thread
 
 # Function to check for ads on a website using Selenium WebDriver
+# def check_ad(web_link, keyword):
+#     # Set path to your WebDriver executable
+#     service = Service(executable_path="chromedriver.exe")
+#     # Initialize the Selenium WebDriver with Chrome
+#     driver = webdriver.Chrome(service=service)
+#     ad_found = False  # Default ad_found status is False
+
 def check_ad(web_link, keyword):
-    # Set path to your WebDriver executable
-    service = Service(executable_path="chromedriver.exe")
-    # Initialize the Selenium WebDriver with Chrome
-    driver = webdriver.Chrome(service=service)
-    ad_found = False  # Default ad_found status is False
+    try:
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service)
+        ad_found = False
+        driver.get(web_link)
+        ad_found = keyword.lower() in driver.page_source.lower()
+        driver.quit()
+        return ad_found
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+        traceback.print_exc()  # Print complete traceback for detailed debugging
+        return False
 
     try:
         # Navigate to the specified URL
@@ -29,7 +44,7 @@ def check_ad(web_link, keyword):
 
 # Function to perform automated clicks on a website
 def autoclick_website(web_link, number_of_clicks):
-    service = Service(executable_path="chromedriver.exe")
+    service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
     
     try:
