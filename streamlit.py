@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import WebDriverException
 from urllib.parse import urlparse, parse_qs
 from threading import Thread
+import traceback
 
 # Function to check for ads on a website using Selenium WebDriver
 # def check_ad(web_link, keyword):
