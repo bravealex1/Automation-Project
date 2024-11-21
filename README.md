@@ -1,7 +1,6 @@
 <h1><strong>Project Overview</strong></h1>
     <p>
         <strong>This project demonstrates the automation of interacting with a company's website advertisements to enhance promotion and marketing efforts.</strong>
-    </p>
 
     <h2><strong>Disclaimer</strong></h2>
     <p>
