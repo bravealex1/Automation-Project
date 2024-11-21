@@ -1,7 +1,7 @@
 <h1><strong>Project Overview</strong></h1>
         <strong>This project demonstrates the automation of interacting with a company's website advertisements to enhance promotion and marketing efforts.</strong>
 
-    <h2><strong>Disclaimer</strong></h2>
+    <h1><strong>Disclaimer</strong></h1>
 
 Features
 Automated detection of advertisement elements on web pages.
