@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3rd Person Game</title>
-</head>
-<body>
-    <h1><strong>Project Overview</strong></h1>
+<h1><strong>Project Overview</strong></h1>
     <p>
         <strong>This project demonstrates the automation of interacting with a company's website advertisements to enhance promotion and marketing efforts.</strong>
     </p>
