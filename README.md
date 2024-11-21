@@ -1,7 +1,9 @@
 <h1><strong>Project Overview</strong></h1>
         <strong>This project demonstrates the automation of interacting with a company's website advertisements to enhance promotion and marketing efforts.</strong>
 
-    <strong>Disclaimer</strong>
+Disclaimer
+Automating interactions with advertisements, such as auto-clicking, can violate the terms of service of advertising platforms and may be considered unethical or illegal.
+It is essential to ensure that any automated marketing strategies comply with relevant laws and platform policies.
 
 Features
 Automated detection of advertisement elements on web pages.
